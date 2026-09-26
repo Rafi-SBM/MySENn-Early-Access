@@ -1,6 +1,7 @@
 "use client";
 
 import { EarlyAccessTrigger } from "@/components/early-access-trigger";
+import "./community-interactive.module.css";
 
 export function CommunityInteractive() {
   return (
@@ -16,7 +17,7 @@ export function CommunityInteractive() {
             <span>is hearing “us too.”</span>
           </h1>
           <p className="hero-support">
-            A calm space for SEN parents to explore small, practical everyday adjustments that genuinely helped other families. No toxic comparison, no clinical claims — just honest lived wisdom.
+            A calm space for SEN parents to explore small, practical everyday adjustments that genuinely helped other families. No toxic comparison, no clinical claims - just honest lived wisdom.
           </p>
 
           <div className="community-metric-strip" aria-label="Community impact stats">
@@ -69,14 +70,16 @@ export function CommunityInteractive() {
 
         <div className="page-shell helped-grid">
           <div className="what-helped">
-            <span className="coming-pill">Idea preview</span>
-            <h3>A tiny thing that helped.</h3>
-            <p>
-              Parents could share a short story, tag the situation and explain what made a difference for their child.
-            </p>
+            <div className="what-helped-body">
+              <span className="coming-pill">Idea preview</span>
+              <h3>A tiny thing that helped.</h3>
+              <p>
+                Parents could share a short story, tag the situation and explain what made a difference for their child.
+              </p>
+            </div>
             <div className="helped-example">
               <div className="helped-avatar">M</div>
-              <div>
+              <div className="helped-text">
                 <small>A parent shared</small>
                 <p>
                   &ldquo;Giving a five-minute warning with a picture of where we were going made leaving the park gentler for us.&rdquo;

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import "./faq-list.module.css";
 
 export type Faq = { question: string; answer: string; topic?: string };
 
@@ -35,4 +36,3 @@ export function FaqList({ items }: { items: Faq[] }) {
     </div>
   );
 }
-

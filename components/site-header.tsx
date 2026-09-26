@@ -4,9 +4,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import "./site-header.module.css";
 
 const links = [
-  ["Why MySENn", "/#why"],
+  ["Why MySENn", "/"],
   ["How it helps", "/how-it-helps"],
   ["Our story", "/our-story"],
   ["Community", "/community"],
@@ -52,14 +53,17 @@ export function SiteHeader({ onEarlyAccess }: { onEarlyAccess?: () => void }) {
         <Link
           className="brand brand-lockup brand-story-card"
           href="/"
-          onClick={close}
+          onClick={() => {
+            close();
+            window.scrollTo({ top: 0, left: 0, behavior: "instant" as ScrollBehavior });
+          }}
           aria-label="MySENn home"
         >
           <div className="header-logo-box">
             <Image
               className="brand-logo brand-logo-full"
               src="/assets/logo-web.png"
-              alt="MySENn — Understand Their World. Support Their Way."
+              alt="MySENn - Understand Their World. Support Their Way."
               width={180}
               height={50}
               priority
@@ -76,14 +80,16 @@ export function SiteHeader({ onEarlyAccess }: { onEarlyAccess?: () => void }) {
             id="site-navigation"
           >
             {links.map(([label, href]) => {
-              const active =
-                href === "/#why" ? pathname === "/" : pathname === href;
+              const active = pathname === href;
               return (
                 <Link
                   className={active ? "is-current" : undefined}
                   key={href}
                   href={href}
-                  onClick={close}
+                  onClick={() => {
+                    close();
+                    window.scrollTo({ top: 0, left: 0, behavior: "instant" as ScrollBehavior });
+                  }}
                   aria-current={active ? "page" : undefined}
                 >
                   <span>{label}</span>
@@ -91,10 +97,6 @@ export function SiteHeader({ onEarlyAccess }: { onEarlyAccess?: () => void }) {
               );
             })}
           </div>
-          <p className="nav-mobile-note">
-            Your child is one whole story — even when support is spread across
-            many rooms.
-          </p>
         </div>
         <div className="nav-actions">
           <button
@@ -111,6 +113,7 @@ export function SiteHeader({ onEarlyAccess }: { onEarlyAccess?: () => void }) {
           <button
             className="menu-toggle"
             type="button"
+            aria-controls="site-navigation"
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
             onClick={() => setOpen(!open)}

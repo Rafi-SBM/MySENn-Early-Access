@@ -1,7 +1,8 @@
 "use client";
 
-import { FormEvent, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import Image from "next/image";
+import "./early-access.module.css";
 
 export function EarlyAccess({
   open,
@@ -10,13 +11,13 @@ export function EarlyAccess({
   open: boolean;
   onClose: () => void;
 }) {
-  const inputRef = useRef<HTMLInputElement>(null);
+  const closeRef = useRef<HTMLButtonElement>(null);
   const modalRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     if (!open) return;
     document.body.classList.add("modal-open");
-    const focusTimer = window.setTimeout(() => inputRef.current?.focus(), 180);
+    const focusTimer = window.setTimeout(() => closeRef.current?.focus(), 180);
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         onClose();
@@ -46,17 +47,6 @@ export function EarlyAccess({
     };
   }, [onClose, open]);
 
-  function submit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    window.dispatchEvent(
-      new CustomEvent("mysenn:toast", {
-        detail: "Thank you! You have been added to our early access priority list.",
-      }),
-    );
-    event.currentTarget.reset();
-    window.setTimeout(onClose, 900);
-  }
-
   if (!open) return null;
 
   return (
@@ -75,6 +65,7 @@ export function EarlyAccess({
         aria-labelledby="access-title"
       >
         <button
+          ref={closeRef}
           className="modal-close"
           type="button"
           aria-label="Close early access"
@@ -91,36 +82,13 @@ export function EarlyAccess({
             simpler way to capture, connect and understand your child&apos;s
             journey.
           </p>
-
-          <form className="access-form" onSubmit={submit}>
-            <label>
-              <span>Your email</span>
-              <input
-                ref={inputRef}
-                name="email"
-                type="email"
-                autoComplete="email"
-                placeholder="you@example.com"
-                required
-              />
-            </label>
-
-            <div className="access-audience" aria-label="Early access audience">
-              <span>Currently available for</span>
-              <strong>Parents &amp; carers</strong>
-            </div>
-
-            <input name="role" type="hidden" value="Parent or carer" />
-
-            <button className="button button-dark" type="submit">
-              Join early access <i>↗</i>
-            </button>
-
-            <small>
-              Demo form for this prototype. Connect to your mailing platform
-              before launch.
-            </small>
-          </form>
+          <div className="access-audience" aria-label="Early access audience">
+            <span>Currently available for</span>
+            <strong>Parents &amp; carers</strong>
+          </div>
+          <p className="access-scan-note">
+            Scan the code to open the parent and carer early-access page.
+          </p>
         </div>
 
         <div className="qr-panel">

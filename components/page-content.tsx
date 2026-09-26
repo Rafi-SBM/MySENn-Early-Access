@@ -84,24 +84,6 @@ export function HomeContent() {
                 Start with the story <span>↓</span>
               </Link>
             </div>
-            <div className="hero-gdpr-card reveal-up">
-              <div className="hero-gdpr-seal-wrap">
-                <Image
-                  src="/assets/acorn-gdpr-compliant.jpg"
-                  alt="Acorn Compliance"
-                  width={46}
-                  height={46}
-                  className="hero-acorn-badge-img"
-                />
-              </div>
-              <div className="hero-gdpr-text">
-                <div className="gdpr-tag-row">
-                  <span className="gdpr-beacon" />
-                  <span className="gdpr-tag">UK GDPR COMPLIANT</span>
-                </div>
-                <strong>Assured by Acorn Compliance</strong>
-              </div>
-            </div>
           </div>
 
           <div
@@ -307,7 +289,7 @@ export function HomeContent() {
           <article className="moment-card mint-card moment-large tilt-card">
             <span>21:16</span>
             <h3>You knew something had changed.</h3>
-            <p>You just couldn&apos;t explain exactly what — yet.</p>
+            <p>You just couldn&apos;t explain exactly what - yet.</p>
             <div className="mini-chart">
               {Array.from({ length: 6 }, (_, chart) => (
                 <i key={chart} />
@@ -440,43 +422,43 @@ export function HomeContent() {
               <span>Share context</span>
               <h3>Bring clarity to meetings.</h3>
             </div>
-            <div className="help-visual report-deck-visual" aria-hidden="true">
-              <div className="report-deck-card">
-                <div className="deck-card-head">
-                  <div className="deck-doc-title">
-                    <span className="deck-tag">14-DAY SUMMARY</span>
-                    <strong>SENCO &amp; Clinical Brief</strong>
+            <div className="help-visual share-deck-visual" aria-hidden="true">
+              <div className="share-ambient-glow" />
+              <div className="share-shimmer-sweep" />
+              <div className="share-simple-card">
+                <div className="share-simple-header">
+                  <div className="share-pill-badge">
+                    <span className="share-beacon-dot" />
+                    <span className="share-header-title">Meeting brief</span>
                   </div>
-                  <span className="deck-status-badge">✓ Ready to share</span>
+                  <span className="share-ready-badge">
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                    Ready to share
+                  </span>
                 </div>
-                <div className="deck-metrics-row">
-                  <div className="deck-metric">
-                    <div className="metric-bar-wrap">
-                      <span className="metric-fill-bar bar-sensory" />
-                    </div>
-                    <small>Sensory</small>
+                <div className="share-simple-rows">
+                  <div className="share-simple-row">
+                    <span className="share-row-tag tag-senco">Senco</span>
+                    <span className="share-row-title">Sensory &amp; visual supports</span>
+                    <span className="share-status-pill">
+                      <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                        <polyline points="20 6 9 17 4 12" />
+                      </svg>
+                      Ready
+                    </span>
                   </div>
-                  <div className="deck-metric">
-                    <div className="metric-bar-wrap">
-                      <span className="metric-fill-bar bar-sleep" />
-                    </div>
-                    <small>Sleep</small>
+                  <div className="share-simple-row">
+                    <span className="share-row-tag tag-clinic">Clinic</span>
+                    <span className="share-row-title">14-day sleep &amp; trigger context</span>
+                    <span className="share-status-pill pill-verified">
+                      <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                        <polyline points="20 6 9 17 4 12" />
+                      </svg>
+                      Verified
+                    </span>
                   </div>
-                  <div className="deck-metric">
-                    <div className="metric-bar-wrap">
-                      <span className="metric-fill-bar bar-triggers" />
-                    </div>
-                    <small>Triggers</small>
-                  </div>
-                  <div className="deck-metric">
-                    <div className="metric-bar-wrap">
-                      <span className="metric-fill-bar bar-wins" />
-                    </div>
-                    <small>Wins</small>
-                  </div>
-                </div>
-                <div className="deck-callout-pill">
-                  <span>92% calmer with pre-transition visual cue</span>
                 </div>
               </div>
             </div>
@@ -496,7 +478,7 @@ export function HomeContent() {
               Began as a <em>parent story.</em>
             </h2>
             <p className="story-origin-lede">
-              MySENn was founded by Pallavi Deshpande — a technology leader with 20+ years of experience, and a parent who has lived the SEND journey first-hand.
+              MySENn was founded by Pallavi Deshpande - a technology leader with 20+ years of experience, and a parent who has lived the SEND journey first-hand.
             </p>
             <p>
               After living the daily reality of noticing subtle shifts, tracking appointments and repeatedly telling the same history to different professionals, the purpose became simple: give families a calmer, more dignified way to carry their child&apos;s story.
@@ -523,9 +505,9 @@ export function HomeContent() {
                 />
               </div>
               <figcaption>
-                <span className="founder-kicker">Founder · Lived Experience</span>
+                <span className="founder-kicker">Founder</span>
                 <strong className="founder-name">Pallavi Deshpande</strong>
-                <small className="founder-cred">Technology leader · parent · lived experience</small>
+                <small className="founder-cred">Technology leader · parent</small>
               </figcaption>
             </figure>
             <div className="origin-principles-stack">
@@ -596,7 +578,7 @@ export function OurStoryContent() {
             </h1>
 
             <p className="story-hero-lede">
-              Making sure a child’s story travels with them — not on their parents’ shoulders.
+              Making sure a child’s story travels with them - not on their parents’ shoulders.
             </p>
 
             <p className="story-hero-intro">
@@ -733,7 +715,7 @@ export function OurStoryContent() {
                 />
                 <div className="stream-meta-info">
                   <strong>Sarah</strong>
-                  <span>Leo&apos;s Mum (Year 3)</span>
+                  <span>Leo&apos;s Mum</span>
                 </div>
               </div>
             </div>
@@ -934,7 +916,7 @@ export function CookiePolicyContent() {
       <div className="policy-shell">
         <div className="section-tag reveal-up">Legal</div>
         <h1 className="reveal-up">Cookie Policy</h1>
-        <p className="lede reveal-up">MySENn — Last updated: 23 August 2026</p>
+        <p className="lede reveal-up">MySENn - Last updated: 23 August 2026</p>
         <div className="policy-copy">
           {blocks.map(({ title, content }) => (
             <section className="policy-block reveal-up" key={title}>
@@ -1079,7 +1061,7 @@ export function PrivacyPolicyContent() {
           Legal &amp; Privacy
         </div>
         <h1 className="reveal-up">Privacy Policy</h1>
-        <p className="lede reveal-up">MySENn — Last updated: 26 September 2026</p>
+        <p className="lede reveal-up">MySENn - Last updated: 26 September 2026</p>
         <div className="policy-copy">
           {blocks.map(({ title, content }) => (
             <section className="policy-block reveal-up" key={title}>

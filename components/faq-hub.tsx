@@ -1,6 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useState } from "react";
+import "./faq-hub.module.css";
 
 export type FaqItem = {
   question: string;
@@ -57,7 +58,7 @@ export const allFaqs: FaqItem[] = [
     question: "Does MySENn diagnose my child?",
     answer:
       "No. MySENn does not diagnose medical or developmental conditions. Its insights are designed strictly to support observation and evidence-based conversations between parents and certified professionals.",
-    takeaway: "A communication companion for parents — not an automated medical diagnostic tool.",
+    takeaway: "A communication companion for parents - not an automated medical diagnostic tool.",
   },
   {
     category: "getting-started",
@@ -120,7 +121,7 @@ export const allFaqs: FaqItem[] = [
     categoryLabel: "Everyday & Privacy",
     question: "Can MySENn tell me what caused a behaviour?",
     answer:
-      "MySENn identifies correlations and temporal patterns (e.g. sleep changes preceding sensory overload), but frames them as observations to explore with therapists — not definitive medical causation.",
+      "MySENn identifies correlations and temporal patterns (e.g. sleep changes preceding sensory overload), but frames them as observations to explore with therapists - not definitive medical causation.",
     takeaway: "Provides hypotheses and observations for you and your care team to examine.",
   },
   {
@@ -189,42 +190,10 @@ export const allFaqs: FaqItem[] = [
   },
 ];
 
-const CATEGORIES = [
-  { id: "all", label: "All Questions", count: 22, icon: "❖" },
-  { id: "getting-started", label: "Getting Started", count: 8, icon: "✦" },
-  { id: "everyday", label: "Everyday & Privacy", count: 8, icon: "🛡" },
-  { id: "reports", label: "Insights & Reports", count: 6, icon: "📊" },
-] as const;
-
 export function FaqHub() {
-  const [activeCategory, setActiveCategory] = useState<
-    "all" | "getting-started" | "everyday" | "reports"
-  >("all");
-  const [searchQuery, setSearchQuery] = useState("");
   const [openQuestions, setOpenQuestions] = useState<Set<string>>(
     () => new Set([allFaqs[0].question])
   );
-
-  const filteredFaqs = useMemo(() => {
-    let result = allFaqs;
-
-    if (activeCategory !== "all") {
-      result = result.filter((item) => item.category === activeCategory);
-    }
-
-    if (searchQuery.trim()) {
-      const q = searchQuery.toLowerCase().trim();
-      result = result.filter(
-        (item) =>
-          item.question.toLowerCase().includes(q) ||
-          item.answer.toLowerCase().includes(q) ||
-          item.categoryLabel.toLowerCase().includes(q) ||
-          (item.takeaway && item.takeaway.toLowerCase().includes(q))
-      );
-    }
-
-    return result;
-  }, [activeCategory, searchQuery]);
 
   const toggleQuestion = (question: string) => {
     setOpenQuestions((prev) => {
@@ -238,197 +207,49 @@ export function FaqHub() {
     });
   };
 
-  const handleExpandAll = () => {
-    setOpenQuestions(new Set(filteredFaqs.map((f) => f.question)));
-  };
-
-  const handleCollapseAll = () => {
-    setOpenQuestions(new Set());
-  };
+  const CATEGORY_SECTIONS = [
+    { id: "getting-started", title: "Getting started" },
+    { id: "everyday", title: "Everyday use & privacy" },
+    { id: "reports", title: "Insights & reports" },
+  ] as const;
 
   return (
-    <div className="faq-interactive-hub">
-      <div className="faq-hub-grid">
-        <main className="faq-main-flow reveal-up">
-          {/* Inline category tabs */}
-          <div className="faq-category-tabs">
-            {CATEGORIES.map((cat) => {
-              const isActive = activeCategory === cat.id;
-              return (
-                <button
-                  key={cat.id}
-                  type="button"
-                  className={`faq-tab-btn ${isActive ? "active" : ""}`}
-                  onClick={() => {
-                    setActiveCategory(cat.id);
-                    setSearchQuery("");
-                  }}
-                >
-                  <span className="faq-tab-icon">{cat.icon}</span>
-                  <span>{cat.label}</span>
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Search */}
-          <div className="faq-search-card">
-            <div className="faq-search-input-wrap">
-              <span className="search-icon" aria-hidden="true">
-                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                  <circle cx="11" cy="11" r="8" />
-                  <line x1="21" y1="21" x2="16.65" y2="16.65" />
-                </svg>
-              </span>
-              <input
-                type="text"
-                className="faq-search-input"
-                placeholder="Search questions (e.g. privacy, diagnosis, SENCO, reports)..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                aria-label="Search questions"
-              />
-              {searchQuery && (
-                <button
-                  type="button"
-                  className="search-clear-btn"
-                  onClick={() => setSearchQuery("")}
-                  aria-label="Clear search"
-                >
-                  ✕
-                </button>
-              )}
-            </div>
-          </div>
-
-          {/* Results header */}
-          <div className="faq-flow-header">
-            <div>
-              <h2 className="flow-title">
-                {searchQuery
-                  ? `Results for "${searchQuery}"`
-                  : activeCategory === "all"
-                  ? "All questions"
-                  : activeCategory === "getting-started"
-                  ? "Getting Started"
-                  : activeCategory === "everyday"
-                  ? "Everyday & Privacy"
-                  : "Insights & Reports"}
-              </h2>
-            </div>
-
-            <div className="faq-controls-row">
-              <span className="faq-count-pill">
-                {filteredFaqs.length} {filteredFaqs.length === 1 ? "question" : "questions"}
-              </span>
-              {filteredFaqs.length > 0 && (
-                <div className="faq-expand-actions">
-                  <button
-                    type="button"
-                    className="faq-action-link"
-                    onClick={handleExpandAll}
-                  >
-                    Expand All
-                  </button>
-                  <span className="action-sep">·</span>
-                  <button
-                    type="button"
-                    className="faq-action-link"
-                    onClick={handleCollapseAll}
-                  >
-                    Collapse All
-                  </button>
-                </div>
-              )}
-            </div>
-          </div>
-
-          {/* Accordion */}
-          {filteredFaqs.length === 0 ? (
-            <div className="faq-empty-state">
-              <span className="empty-icon" aria-hidden="true">🔍</span>
-              <h3>No matching questions found</h3>
-              <p>
-                We couldn&apos;t find any answers matching &ldquo;{searchQuery}&rdquo;. Try a different search or reset filters.
-              </p>
-              <button
-                type="button"
-                className="button button-dark"
-                onClick={() => {
-                  setSearchQuery("");
-                  setActiveCategory("all");
-                }}
-              >
-                <span>Reset Filters</span>
-              </button>
-            </div>
-          ) : (
-            <div className="faq-cards-stack">
-              {filteredFaqs.map((faq) => {
+    <div className="faq-hub-content reveal-up">
+      {CATEGORY_SECTIONS.map((section) => (
+        <section className="faq-category" key={section.id}>
+          <h2>{section.title}</h2>
+          <div className="faq-list">
+            {allFaqs
+              .filter((faq) => faq.category === section.id)
+              .map((faq) => {
                 const isOpen = openQuestions.has(faq.question);
                 return (
                   <article
                     key={faq.question}
-                    className={`faq-card-item ${isOpen ? "is-expanded" : ""}`}
+                    className={`faq-item ${isOpen ? "open" : ""}`}
                   >
                     <button
                       type="button"
-                      className="faq-card-header"
+                      className="faq-q"
                       onClick={() => toggleQuestion(faq.question)}
                       aria-expanded={isOpen}
                     >
-                      <div className="faq-header-left">
-                        <span className={`faq-category-pill cat-${faq.category}`}>
-                          {faq.categoryLabel}
-                        </span>
-                        <h3 className="faq-card-title">{faq.question}</h3>
-                      </div>
-                      <span className="faq-card-toggle" aria-hidden="true">
-                        <span className="toggle-glyph">{isOpen ? "−" : "+"}</span>
-                      </span>
+                      <span>{faq.question}</span>
+                      <i aria-hidden="true">+</i>
                     </button>
-
-                    {isOpen && (
-                      <div className="faq-card-body">
-                        <div className="faq-card-content">
-                          <p>{faq.answer}</p>
-                          {faq.takeaway && (
-                            <div className="faq-takeaway-box">
-                              <span className="takeaway-bullet">✓</span>
-                              <div className="takeaway-copy">
-                                <strong>Key Takeaway:</strong>
-                                <span>{faq.takeaway}</span>
-                              </div>
-                            </div>
-                          )}
-                        </div>
-                      </div>
-                    )}
+                    <div className="faq-a" aria-hidden={!isOpen}>
+                      <p>{faq.answer}</p>
+                    </div>
                   </article>
                 );
               })}
-            </div>
-          )}
-        </main>
-      </div>
+          </div>
+        </section>
+      ))}
 
-      <div className="faq-assurance-banner reveal-up">
-        <div className="assurance-col">
-          <div className="assurance-icon-box">🛡</div>
-          <strong>100% Parent Owned</strong>
-          <p>Your child's observation logs are encrypted and never sold to third parties or data brokers.</p>
-        </div>
-        <div className="assurance-col">
-          <div className="assurance-icon-box">🇬🇧</div>
-          <strong>UK GDPR &amp; DPA 2018</strong>
-          <p>Built strictly to UK data protection benchmarks with clinical-level confidentiality.</p>
-        </div>
-        <div className="assurance-col">
-          <div className="assurance-icon-box">🩺</div>
-          <strong>Observation Companion</strong>
-          <p>Empowers professional conversations with SENCOs, GPs, and paediatricians without clinical pressure.</p>
-        </div>
-      </div>
+      <p className="small-note">
+        If you need urgent medical help, MySENn is not an emergency service. Contact the appropriate emergency or healthcare service.
+      </p>
     </div>
   );
 }

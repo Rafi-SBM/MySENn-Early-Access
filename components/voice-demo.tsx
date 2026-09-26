@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import "./voice-demo.module.css";
 
 export function VoiceDemo() {
   const waveformRef = useRef<HTMLDivElement>(null);

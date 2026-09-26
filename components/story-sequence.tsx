@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import "./story-sequence.module.css";
 
 const stages = [
   {

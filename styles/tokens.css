@@ -1,0 +1,153 @@
+:root {
+  /* Color roles */
+  --color-text-primary: #0e2634;
+  --color-text-strong: #091a24;
+  --color-text-secondary: #58716c;
+  --color-text-inverse: #ffffff;
+  --color-background-primary: #faf8f2;
+  --color-background-secondary: #ffffff;
+  --color-surface-primary: #ffffff;
+  --color-border-subtle: rgba(12, 45, 40, 0.12);
+  --color-border-inverse: rgba(255, 255, 255, 0.16);
+  --color-accent-coral: #eb5e43;
+  --color-accent-sky: #17b8c7;
+  --color-accent-mint: #1ebba6;
+  --color-accent-yellow: #fbb034;
+  --color-accent-violet: #7b55f4;
+  --color-accent-blue: #2575fc;
+
+  /* Typography */
+  --font-family-ui: var(--font-jakarta, "Plus Jakarta Sans"),
+    "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --font-family-editorial: var(--font-newsreader, "Newsreader"), Newsreader,
+    Georgia, "Times New Roman", serif;
+  --font-size-xs: 0.72rem;
+  --font-size-sm: 0.86rem;
+  --font-size-md: 1rem;
+  --font-size-lg: clamp(1.08rem, 1.02rem + 0.22vw, 1.22rem);
+  --font-size-heading-sm: clamp(1.42rem, 1.28rem + 0.48vw, 1.85rem);
+  --font-size-heading-md: clamp(2rem, 1.9rem + 0.55vw, 2.75rem);
+  --font-size-display: clamp(3rem, 2.75rem + 1vw, 3.625rem);
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Spacing */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-section: clamp(5.5rem, 6.4vw, 7rem);
+
+  /* Shape, depth, layout, motion and layers */
+  --radius-sm: 0.75rem;
+  --radius-md: 1.375rem;
+  --radius-lg: 1.875rem;
+  --radius-xl: 2.625rem;
+  --radius-pill: 999px;
+  --shadow-sm: 0 4px 16px rgba(12, 45, 40, 0.03);
+  --shadow-md: 0 20px 48px -12px rgba(12, 45, 40, 0.09),
+    var(--shadow-sm);
+  --shadow-lg: 0 32px 84px -16px rgba(7, 31, 27, 0.24),
+    0 8px 24px rgba(7, 31, 27, 0.08);
+  --shadow-overlay: 0 35px 100px rgba(8, 31, 28, 0.22);
+  --container-width: 1240px;
+  --container-gutter: 32px;
+  --header-height: 84px;
+  --duration-fast: 0.2s;
+  --duration-normal: 0.3s;
+  --duration-slow: 0.8s;
+  --ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --z-header: 250;
+  --z-overlay: 700;
+  --z-modal: 710;
+  --z-toast: 800;
+
+  /* Compatibility aliases preserve the currently effective component values. */
+  --ink: var(--color-text-primary);
+  --ink-2: var(--color-text-strong);
+  --paper: var(--color-background-primary);
+  --paper-2: var(--color-background-secondary);
+  --sand: #eee7da;
+  --line: var(--color-border-subtle);
+  --line-dark: var(--color-border-inverse);
+  --coral: var(--color-accent-coral);
+  --coral-soft: #feece7;
+  --sky: var(--color-accent-sky);
+  --sky-soft: #e0f2fe;
+  --mint: var(--color-accent-mint);
+  --mint-soft: #d1fae5;
+  --yellow: var(--color-accent-yellow);
+  --yellow-soft: #fef3c7;
+  --lav: var(--color-accent-violet);
+  --royal-blue: var(--color-accent-blue);
+  --lilac: #c07eed;
+  --shadow: var(--shadow-md);
+  --shadow-deep: var(--shadow-lg);
+  --ease: var(--ease-standard);
+  --page: var(--container-width);
+  --header: var(--header-height);
+  --font-ui: var(--font-family-ui);
+  --font-editorial: var(--font-family-editorial);
+  --fs-caption: var(--font-size-xs);
+  --fs-small: var(--font-size-sm);
+  --fs-body: var(--font-size-md);
+  --fs-lead: var(--font-size-lg);
+  --fs-h3: var(--font-size-heading-sm);
+  --fs-h2: var(--font-size-heading-md);
+  --fs-display: var(--font-size-display);
+  --section-space: var(--space-section);
+}
+
+@media (max-width: 1180px) {
+  :root {
+    --container-width: 1060px;
+    --space-section: 5.8rem;
+  }
+}
+
+@media (max-width: 980px) {
+  :root {
+    --header-height: 76px;
+    --space-section: 5.4rem;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  :root {
+    --container-gutter: 60px;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 768px) {
+  :root {
+    --container-gutter: 40px;
+  }
+}
+
+@media (max-width: 720px) {
+  :root {
+    --space-section: 4.5rem;
+  }
+}
+
+@media (max-width: 479px) {
+  :root {
+    --container-gutter: 20px;
+  }
+}
+
+@media (min-width: 981px) {
+  :root {
+    --font-size-md: 18px;
+  }
+}

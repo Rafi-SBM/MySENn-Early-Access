@@ -21,8 +21,8 @@ const newsreader = Newsreader({
 export const metadata: Metadata = {
   metadataBase: new URL("https://mysenn.com"),
   title: {
-    default: "MySENn — Understand their world",
-    template: "%s | MySENn",
+    default: "MySENn - Understand Their World.",
+    template: "%s",
   },
   description:
     "A gentler way to hold the everyday story of a child with additional needs.",
@@ -38,4 +38,3 @@ export default function RootLayout({
     </html>
   );
 }
-

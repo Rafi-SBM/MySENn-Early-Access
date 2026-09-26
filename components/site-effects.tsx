@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import "./site-effects.module.css";
 
 export function SiteEffects() {
   const pathname = usePathname();
@@ -45,25 +46,36 @@ export function SiteEffects() {
 
     const cleanups: Array<() => void> = [];
 
-    const revealEls = document.querySelectorAll<HTMLElement>(
-      ".reveal-up, .reveal-words, .help-step"
-    );
-    if ("IntersectionObserver" in window && !reducedMotion) {
-      const revealObserver = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (!entry.isIntersecting) return;
-            entry.target.classList.add("revealed");
-            revealObserver.unobserve(entry.target);
-          });
-        },
-        { threshold: 0.12, rootMargin: "0px 0px -6% 0px" }
+    const setupReveals = () => {
+      const sectionElements = document.querySelectorAll<HTMLElement>(
+        "main > section:not(.story-pain):not(.hero), .content-section, .faq-category, .footer-closing, .policy-block, .reveal-up, .reveal-words, .help-step, .reveal-section"
       );
-      revealEls.forEach((el) => revealObserver.observe(el));
-      cleanups.push(() => revealObserver.disconnect());
-    } else {
-      revealEls.forEach((el) => el.classList.add("revealed"));
-    }
+      if ("IntersectionObserver" in window && !reducedMotion) {
+        const revealObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return;
+              entry.target.classList.add("revealed");
+              revealObserver.unobserve(entry.target);
+            });
+          },
+          { threshold: 0.05, rootMargin: "0px 0px -6% 0px" }
+        );
+        sectionElements.forEach((el) => {
+          const rect = el.getBoundingClientRect();
+          if (rect.top < window.innerHeight * 0.92) {
+            el.classList.add("revealed");
+          } else {
+            revealObserver.observe(el);
+          }
+        });
+        cleanups.push(() => revealObserver.disconnect());
+      } else {
+        sectionElements.forEach((el) => el.classList.add("revealed"));
+      }
+    };
+
+    setupReveals();
     if (finePointer && !reducedMotion) {
       document
         .querySelectorAll<HTMLElement>("[data-parallax-zone]")

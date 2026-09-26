@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { EarlyAccessTrigger } from "@/components/early-access-trigger";
+import "./how-it-helps-interactive.module.css";
 
 type CaptureMode = "voice" | "note" | "tags";
 type InsightRange = "7d" | "30d" | "term";
@@ -119,7 +120,6 @@ export function HowItHelpsInteractive() {
   const [isPlayingVoice, setIsPlayingVoice] = useState(false);
   const [insightRange, setInsightRange] = useState<InsightRange>("7d");
   const [reportAudience, setReportAudience] = useState<ReportAudience>("senco");
-  const [reportDownloaded, setReportDownloaded] = useState(false);
   const [activeEnv, setActiveEnv] = useState<ActiveEnv>("home");
 
   const currentInsight = INSIGHT_DATA[insightRange];
@@ -520,24 +520,6 @@ export function HowItHelpsInteractive() {
                 </li>
               </ul>
 
-              <div className="report-action-wrap">
-                <button
-                  type="button"
-                  className="button button-dark magnetic report-download-btn"
-                  onClick={() => {
-                    setReportDownloaded(true);
-                    setTimeout(() => setReportDownloaded(false), 3500);
-                  }}
-                >
-                  <span>{reportDownloaded ? "✓ PDF Downloaded!" : `Download ${reportAudience === "senco" ? "SENCO" : reportAudience === "paediatrician" ? "Clinical" : "Therapy"} 1-Page Brief`}</span>
-                  <i>↗</i>
-                </button>
-                {reportDownloaded && (
-                  <p className="report-success-msg" role="status">
-                    Sample 1-page clinical summary ready for printing or emailing to your specialist.
-                  </p>
-                )}
-              </div>
             </div>
 
             <div className="reports-preview-col">
@@ -640,13 +622,6 @@ export function HowItHelpsInteractive() {
                   </>
                 )}
 
-                <div className="doc-sheet-footer">
-                  <div className="doc-sign-note">
-                    <span>Parent Observation Summary</span>
-                    <small>Documented via MySENn Lived Companion · UK GDPR Protected</small>
-                  </div>
-                  <span className="doc-stamp">VERIFIED BY PARENT</span>
-                </div>
               </div>
             </div>
           </div>
@@ -742,7 +717,6 @@ export function HowItHelpsInteractive() {
               <p className="env-contrast-quote">{currentEnv.quote}</p>
 
               <div className="env-card-footer">
-                <span>Multi-setting observation tracking · Active Environment</span>
                 <div className="env-dots-nav">
                   {(["home", "school", "clinic"] as ActiveEnv[]).map((envKey) => (
                     <button
@@ -787,7 +761,7 @@ export function HowItHelpsInteractive() {
                 <span className="check-bullet">✓</span>
                 <div>
                   <strong>Respecting clinical boundaries</strong>
-                  <p>MySENn documents facts—qualified professionals make medical and educational decisions.</p>
+                  <p>MySENn documents facts - qualified professionals make medical and educational decisions.</p>
                 </div>
               </li>
             </ul>
@@ -811,7 +785,6 @@ export function HowItHelpsInteractive() {
                   <span className="collab-status-dot" />
                   <strong>Collaborative Care Handover</strong>
                 </div>
-                <span className="collab-security-badge">UK GDPR ASSURED</span>
               </div>
 
               <div className="collab-stream-nodes">
@@ -848,7 +821,6 @@ export function HowItHelpsInteractive() {
                   <div className="node-content">
                     <div className="node-title-row">
                       <strong>Speech &amp; OT Team</strong>
-                      <span className="node-tag">Sensory Strategy</span>
                     </div>
                     <p>Weighted lap pad 8-minute calming metric verified across home and school.</p>
                   </div>
